@@ -10,6 +10,88 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const managers = []
+const engineers = []
+const interns = []
+
+// Questions to retrieve user information
+const questions = [
+    {
+        type: "input",
+        message: "What is your ID number?",
+        name: "id"
+    },
+    {
+        type: "input",
+        message: "What is your email?",
+        name: "email"
+    },
+    {
+        type: "list",
+        message: "What is your position?",
+        name: "role",
+        choices: [
+            "Manager",
+            "Engineer",
+            "Intern"
+    ]}
+]
+const managerQ = 
+    {
+        type: "input",
+        message: "What is your office number?",
+        name: "office"
+    }
+
+
+const engineerQ = 
+    {
+        type: "input",
+        message: "What is your github?",
+        name: "github"
+    }
+
+
+const internQ = 
+    {
+        type: "input",
+        message: "What is your school?",
+        name: "school"
+    }
+
+// function init for inquirer to prompt questions
+// conditional statements for question answers
+// .then function(response){
+    // write data to html}
+function init(){
+    inquirer.prompt(questions)
+    .then( response => {
+        if (response.role == "Manager"){
+            inquirer.prompt(managerQ)
+            .then (response => {
+                // calling the class to create an object with response.github
+                const man = new Manager(response.name, response.id, response.email);
+                // push responses to array
+                managers.push(man);
+            })
+        }
+        else if (response.role == "Engineer"){
+            inquirer.prompt(engineerQ)
+            .then (response => {
+                const eng = new Engineer(response.name, response.id, response.email);
+                engineers.push(eng);
+            })
+        }
+        else {
+            inquirer.prompt(internQ)
+            .then (response => {
+                const int = new Intern (response.name, response.id, response.email);
+                interns.push(int);
+            })
+        }
+    })
+}
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
