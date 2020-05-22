@@ -70,27 +70,29 @@ function init(){
             inquirer.prompt(managerQ)
             .then (response => {
                 // calling the class to create an object with response.github
-                const man = new Manager(response.name, response.id, response.email);
+                const man = new Manager(response.name, response.id, response.email, response.office);
                 // push responses to array
-                managers.push(man);
+                console.log(man)
             })
         }
         else if (response.role == "Engineer"){
             inquirer.prompt(engineerQ)
             .then (response => {
-                const eng = new Engineer(response.name, response.id, response.email);
-                engineers.push(eng);
+                const eng = new Engineer(response.name, response.id, response.email, response.github);
+                console.log(eng)
             })
         }
         else {
             inquirer.prompt(internQ)
             .then (response => {
-                const int = new Intern (response.name, response.id, response.email);
-                interns.push(int);
+                const int = new Intern (response.name, response.id, response.email, response.school);
+                console.log(int)
             })
         }
     })
 }
+
+init();
 
 
 // Write code to use inquirer to gather information about the development team members,
