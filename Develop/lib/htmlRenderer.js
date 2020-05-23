@@ -7,7 +7,9 @@ const render = employees => {
   const html = [];
 
   html.push(employees
+    //we get the manager objects only
     .filter(employee => employee.getRole() === "Manager")
+    //for each manager object we replace with html [mangertheml,managerhtml]
     .map(manager => renderManager(manager))
   );
   html.push(employees
@@ -24,7 +26,8 @@ const render = employees => {
 };
 
 const renderManager = manager => {
-  let template = fs.readFileSync(path.resolve(templatesDir, "manager.html"), "utf8");
+  let filepath = path.resolve(templatesDir, "manager.html");
+  let template = fs.readFileSync(filepath, "utf8");
   template = replacePlaceholders(template, "name", manager.getName());
   template = replacePlaceholders(template, "role", manager.getRole());
   template = replacePlaceholders(template, "email", manager.getEmail());
