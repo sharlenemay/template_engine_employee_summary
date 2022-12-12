@@ -4,7 +4,7 @@
   "description": "This is a software engineering team profile generator. By prompting the user for information, the responses are displayed accordingly on a main page. Three types of team members are as follows: Manager, Engineer, and Intern.",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "inquirer": "^7.1.0"
   },
   "devDependencies": {},
